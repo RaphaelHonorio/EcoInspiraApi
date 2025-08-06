@@ -3,9 +3,69 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5CD0F2B7-F004-44B6-AB0D-DF4EB3886A0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{69AB6EDC-5A54-4865-9699-8AC45B7D6203}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{CCA76CC8-DD64-4103-B681-F6C080F686CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DE8E9C89-0C5B-443D-8BBC-92832E3BA6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.API", "src\BackEnd\EcoInspira.API\EcoInspira.API.csproj", "{2F90B99D-D737-4D4C-8434-E1A1FC7C2820}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Application", "src\BackEnd\EcoInspira.Application\EcoInspira.Application.csproj", "{F4C5F98D-8829-494D-89EA-3465A90B87CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Infrastructure", "src\BackEnd\EcoInspira.Infrastructure\EcoInspira.Infrastructure.csproj", "{6B45D27C-DE04-49DB-B9DE-60F63923F671}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Domain", "src\BackEnd\EcoInspira.Domain\EcoInspira.Domain.csproj", "{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Communication", "src\Shared\EcoInspira.Communication\EcoInspira.Communication.csproj", "{2677CC29-3690-4602-9319-3B2CD269FA50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Exceptions", "src\Shared\EcoInspira.Exceptions\EcoInspira.Exceptions.csproj", "{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F90B99D-D737-4D4C-8434-E1A1FC7C2820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F90B99D-D737-4D4C-8434-E1A1FC7C2820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F90B99D-D737-4D4C-8434-E1A1FC7C2820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F90B99D-D737-4D4C-8434-E1A1FC7C2820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C5F98D-8829-494D-89EA-3465A90B87CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C5F98D-8829-494D-89EA-3465A90B87CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C5F98D-8829-494D-89EA-3465A90B87CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C5F98D-8829-494D-89EA-3465A90B87CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B45D27C-DE04-49DB-B9DE-60F63923F671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B45D27C-DE04-49DB-B9DE-60F63923F671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B45D27C-DE04-49DB-B9DE-60F63923F671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B45D27C-DE04-49DB-B9DE-60F63923F671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2677CC29-3690-4602-9319-3B2CD269FA50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2677CC29-3690-4602-9319-3B2CD269FA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2677CC29-3690-4602-9319-3B2CD269FA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2677CC29-3690-4602-9319-3B2CD269FA50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCA76CC8-DD64-4103-B681-F6C080F686CA} = {5CD0F2B7-F004-44B6-AB0D-DF4EB3886A0D}
+		{DE8E9C89-0C5B-443D-8BBC-92832E3BA6D6} = {5CD0F2B7-F004-44B6-AB0D-DF4EB3886A0D}
+		{2F90B99D-D737-4D4C-8434-E1A1FC7C2820} = {CCA76CC8-DD64-4103-B681-F6C080F686CA}
+		{F4C5F98D-8829-494D-89EA-3465A90B87CC} = {CCA76CC8-DD64-4103-B681-F6C080F686CA}
+		{6B45D27C-DE04-49DB-B9DE-60F63923F671} = {CCA76CC8-DD64-4103-B681-F6C080F686CA}
+		{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C} = {CCA76CC8-DD64-4103-B681-F6C080F686CA}
+		{2677CC29-3690-4602-9319-3B2CD269FA50} = {DE8E9C89-0C5B-443D-8BBC-92832E3BA6D6}
+		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B} = {DE8E9C89-0C5B-443D-8BBC-92832E3BA6D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0838AE9-2E8C-4297-82DA-C93F0BA65479}

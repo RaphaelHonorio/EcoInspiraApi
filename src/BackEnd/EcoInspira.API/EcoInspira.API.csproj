@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\EcoInspira.Communication\EcoInspira.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\EcoInspira.Exceptions\EcoInspira.Exceptions.csproj" />
+    <ProjectReference Include="..\EcoInspira.Application\EcoInspira.Application.csproj" />
+  </ItemGroup>
+
 </Project>

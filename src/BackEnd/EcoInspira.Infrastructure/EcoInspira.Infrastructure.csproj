@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EcoInspira.Domain\EcoInspira.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
