@@ -12,7 +12,7 @@ namespace EcoInspira.Application.Services.AutoMapper
 
         private void RequestToDomain()
         {
-            CreateMap<RequestRegisterUserJson, Domain.Entiities.User>();
+            CreateMap<RequestRegisterUserJson, Domain.Entities.User>();
         }
     }
 }

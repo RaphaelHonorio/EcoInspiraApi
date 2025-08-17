@@ -1,7 +1,6 @@
 ﻿using EcoInspira.Application.UseCases.User.Register;
 using EcoInspira.Communication.Requests;
 using EcoInspira.Communication.Responses;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoInspira.API.Controllers
@@ -13,11 +12,11 @@ namespace EcoInspira.API.Controllers
     {
         [HttpPost]
         [ProducesResponseType(typeof (ResponseRegisteredUserJson), StatusCodes.Status201Created )]
-        public IActionResult Register (RequestRegisterUserJson request)
+        public async Task<IActionResult> Register (
+            [FromServices]IRegisterUserUseCase useCase,
+            [FromBody]RequestRegisterUserJson request)
         {
-            var useCase = new RegisterUserUseCase();
-
-            var result = useCase.Execute(request);
+            var result = await useCase.Execute(request);
 
             return Created(string.Empty,result);
         }

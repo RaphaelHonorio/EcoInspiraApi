@@ -15,6 +15,7 @@
     <ProjectReference Include="..\..\Shared\EcoInspira.Communication\EcoInspira.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\EcoInspira.Exceptions\EcoInspira.Exceptions.csproj" />
     <ProjectReference Include="..\EcoInspira.Domain\EcoInspira.Domain.csproj" />
+    <ProjectReference Include="..\EcoInspira.Infrastructure\EcoInspira.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

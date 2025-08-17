@@ -1,25 +1,49 @@
-﻿
-using EcoInspira.Application.Services.AutoMapper;
+﻿using AutoMapper;
+using EcoInspira.Application.Services.Cryptography;
 using EcoInspira.Communication.Requests;
 using EcoInspira.Communication.Responses;
+using EcoInspira.Domain.Repositories;
+using EcoInspira.Domain.Repositories.User;
 using EcoInspira.Exceptions.ExceptionsBase;
 
 namespace EcoInspira.Application.UseCases.User.Register
 {
-    public class RegisterUserUseCase
+    public class RegisterUserUseCase :IRegisterUserUseCase
     {
-        public ResponseRegisteredUserJson Execute(RequestRegisterUserJson request)
+        private readonly IUserWriteOnlyRepository _writeOnlyRepository;
+        private readonly IUserReadOnlyRepository _readOnlyRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly PasswordEncripter _passowordEncripter;
+
+        public RegisterUserUseCase(
+            IUserWriteOnlyRepository writeOnlyRepository, 
+            IUserReadOnlyRepository ReadOnlyRepository,
+            IUnitOfWork unitOfWork,
+            PasswordEncripter passowordEncripter,
+            IMapper mapper
+            )
+        {
+            _writeOnlyRepository = writeOnlyRepository;
+            _readOnlyRepository = ReadOnlyRepository;
+            _mapper = mapper;
+            _passowordEncripter = passowordEncripter;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
             //--== Validar Request
             Validade(request);
 
             //--== mapear a request em um entidade
-            var autoMapper = new AutoMapper.MapperConfiguration(options =>
-            {
-                options.AddProfile(new AutoMapping());
-            }).CreateMapper();
+            var user = _mapper.Map<Domain.Entities.User>(request);
+            user.Password = _passowordEncripter.Encrypyt(request.Password);
 
-            var user = autoMapper.Map<Domain.Entiities.User>(request);
+            await _writeOnlyRepository.Add(user);
+
+
+            await _unitOfWork.Commit();
 
             // salvar no banco de dados
             return new ResponseRegisteredUserJson

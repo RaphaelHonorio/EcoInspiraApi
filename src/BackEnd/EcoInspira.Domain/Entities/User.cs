@@ -1,4 +1,4 @@
-﻿namespace EcoInspira.Domain.Entiities
+﻿namespace EcoInspira.Domain.Entities
 {
     public class User : EntityBase
     {
