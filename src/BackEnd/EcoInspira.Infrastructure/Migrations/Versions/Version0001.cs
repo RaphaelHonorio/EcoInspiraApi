@@ -13,7 +13,8 @@ namespace EcoInspira.Infrastructure.Migrations.Versions
                 .WithColumn("Email").AsString(255).NotNullable()
                 .WithColumn("Password").AsString(2555).NotNullable()
                 .WithColumn("Cpf").AsString(255).NotNullable()
-                .WithColumn("DataNascimento").AsString(255).NotNullable();
+                .WithColumn("DataNascimento").AsString(255).NotNullable()
+                .WithColumn("UserIdentifier").AsGuid().NotNullable();
         }
     }
 }

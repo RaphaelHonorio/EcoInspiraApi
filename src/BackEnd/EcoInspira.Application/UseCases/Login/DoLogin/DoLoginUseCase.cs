@@ -2,6 +2,7 @@
 using EcoInspira.Communication.Requests;
 using EcoInspira.Communication.Responses;
 using EcoInspira.Domain.Repositories.User;
+using EcoInspira.Domain.Security.Tokens;
 using EcoInspira.Exceptions.ExceptionsBase;
 
 namespace EcoInspira.Application.UseCases.Login.DoLogin
@@ -10,11 +11,17 @@ namespace EcoInspira.Application.UseCases.Login.DoLogin
     {
         private readonly IUserReadOnlyRepository _repository;
         private readonly PasswordEncripter _passwordEncripter;
+        private readonly IAccessTokenGenerator _accessTokenGenerator;
 
-        public DoLoginUseCase(IUserReadOnlyRepository repository, PasswordEncripter passwordEncripter)
+        public DoLoginUseCase(
+            IUserReadOnlyRepository repository, 
+            PasswordEncripter passwordEncripter, 
+            IAccessTokenGenerator accessTokenGenerator
+            )
         {
             _repository = repository;
             _passwordEncripter = passwordEncripter;
+            _accessTokenGenerator = accessTokenGenerator;
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestLoginJson request)
@@ -25,8 +32,11 @@ namespace EcoInspira.Application.UseCases.Login.DoLogin
 
             return new ResponseRegisteredUserJson
             {
-                Name = user.Name
-
+                Name = user.Name,
+                Tokens = new ResponseTokensJson
+                {
+                    AccessToken = _accessTokenGenerator.Generate(user.UserIdentifier),
+                }
             };
         }
     }

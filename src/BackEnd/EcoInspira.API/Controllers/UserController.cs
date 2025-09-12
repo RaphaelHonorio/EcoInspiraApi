@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EcoInspira.API.Controllers
 {
-
-
     public class UserController : EcoInspiraBaseController
     {
         [HttpPost]

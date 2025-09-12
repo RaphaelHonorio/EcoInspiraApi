@@ -1,8 +1,10 @@
 ﻿using EcoInspira.Domain.Repositories;
 using EcoInspira.Domain.Repositories.User;
+using EcoInspira.Domain.Security.Tokens;
 using EcoInspira.Infrastructure.DataAccess;
 using EcoInspira.Infrastructure.DataAccess.Repositories;
 using EcoInspira.Infrastructure.Extensions;
+using EcoInspira.Infrastructure.Security.Tokens.Access.Generator;
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,8 +20,8 @@ namespace EcoInspira.Infrastructure
             AddDbContext_MySqlServer(services, configuration);
             AddFluentMigrator_MySql(services, configuration);
             AddRepositories(services);
+            AddTokens(services, configuration);
         }
-
 
         private static void AddDbContext_MySqlServer(IServiceCollection services, IConfiguration configuration)
         {
@@ -53,5 +55,14 @@ namespace EcoInspira.Infrastructure
                 .ScanIn(Assembly.Load("EcoInspira.Infrastructure")).For.All();
             });
         }
+
+        private static void AddTokens(IServiceCollection services, IConfiguration configuration)
+        {
+            var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpirationTimeMinutes");
+            var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+
+            services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
+        }
+
     }
 }

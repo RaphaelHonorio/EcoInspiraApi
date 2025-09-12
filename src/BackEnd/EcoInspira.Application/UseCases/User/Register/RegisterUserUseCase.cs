@@ -4,6 +4,7 @@ using EcoInspira.Communication.Requests;
 using EcoInspira.Communication.Responses;
 using EcoInspira.Domain.Repositories;
 using EcoInspira.Domain.Repositories.User;
+using EcoInspira.Domain.Security.Tokens;
 using EcoInspira.Exceptions;
 using EcoInspira.Exceptions.ExceptionsBase;
 
@@ -15,6 +16,7 @@ namespace EcoInspira.Application.UseCases.User.Register
         private readonly IUserReadOnlyRepository _readOnlyRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IAccessTokenGenerator _accessTokenGenerator;
         private readonly PasswordEncripter _passowordEncripter;
 
         public RegisterUserUseCase(
@@ -22,34 +24,37 @@ namespace EcoInspira.Application.UseCases.User.Register
             IUserReadOnlyRepository ReadOnlyRepository,
             IUnitOfWork unitOfWork,
             PasswordEncripter passowordEncripter,
+            IAccessTokenGenerator accessTokenGenerator,
             IMapper mapper
             )
         {
             _writeOnlyRepository = writeOnlyRepository;
             _readOnlyRepository = ReadOnlyRepository;
             _mapper = mapper;
+            _accessTokenGenerator = accessTokenGenerator;
             _passowordEncripter = passowordEncripter;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
-            //--== Validar Request
            await Validade(request);
 
-            //--== mapear a request em um entidade
             var user = _mapper.Map<Domain.Entities.User>(request);
             user.Password = _passowordEncripter.Encrypyt(request.Password);
+            user.UserIdentifier = Guid.NewGuid();
 
             await _writeOnlyRepository.Add(user);
 
-
             await _unitOfWork.Commit();
 
-            // salvar no banco de dados
             return new ResponseRegisteredUserJson
             {
                 Name = request.Name,
+                Tokens = new ResponseTokensJson
+                {
+                    AccessToken = _accessTokenGenerator.Generate(user.UserIdentifier),
+                }
             };
         }
 
