@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EcoInspira.Exceptions.ExceptionsBase
+﻿namespace EcoInspira.Exceptions.ExceptionsBase
 {
-    public class EcoInspiraException : System.Exception
+    public class EcoInspiraException : Exception
     {
+        public EcoInspiraException(string message) : base(message)
+        {
+
+        }
     }
 }

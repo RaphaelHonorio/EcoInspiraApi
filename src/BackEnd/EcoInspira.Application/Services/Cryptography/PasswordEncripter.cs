@@ -9,14 +9,16 @@ namespace EcoInspira.Application.Services.Cryptography
 {
     public class PasswordEncripter
     {
-        //private readonly string _addtionalKey;
 
-       // public PasswordEncripter(/*string additionalKey*/) //=> //_addtionalKey = additionalKey;
+        private readonly string _addtionalKey;
+
+        public PasswordEncripter(string addtionalKey) => _addtionalKey = addtionalKey;
+
 
         public string Encrypyt(string password)
         {
 
-            var newPassword = $"{password}{"abc"}";
+            var newPassword = $"{password}{_addtionalKey}";
 
             var bytes = Encoding.UTF8.GetBytes(password);
             var hasBytes = SHA512.HashData(bytes);

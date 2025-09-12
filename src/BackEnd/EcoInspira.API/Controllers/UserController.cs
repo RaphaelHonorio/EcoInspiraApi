@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace EcoInspira.API.Controllers
 {
 
-    [Route("[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+
+    public class UserController : EcoInspiraBaseController
     {
         [HttpPost]
         [ProducesResponseType(typeof (ResponseRegisteredUserJson), StatusCodes.Status201Created )]

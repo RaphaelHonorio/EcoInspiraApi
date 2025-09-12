@@ -14,5 +14,13 @@ namespace EcoInspira.Infrastructure.DataAccess.Repositories
 
         //--== Verifica no banco de dados se já tem o email cadastrado
         public async Task<bool> ExistActiveUserWithEmail(string email) => await _dbContext.User.AnyAsync(user => user.Email.Equals(email) && user.Active);
+
+        public async Task<User?> GetByCpfAndPassword(string cpf, string password)
+        {
+          return await _dbContext
+                .User
+                .AsNoTracking()
+                .FirstOrDefaultAsync(user => user.Active && user.Cpf.Equals(cpf) && user.Password.Equals(password));
+        }
     }
 }

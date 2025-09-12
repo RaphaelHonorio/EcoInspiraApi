@@ -12,31 +12,34 @@ namespace EcoInspira.API.Filters
         public void OnException(ExceptionContext context)
         {
             if(context.Exception is EcoInspiraException)
-            {
                 HandleProjectException(context);
-            }
             else
-            {
-
-            }
+                ThrowUnknowtException(context);
         }
 
-        private void HandleProjectException(ExceptionContext context)
+        private static void HandleProjectException(ExceptionContext context)
         {
-            if(context.Exception is ErrorOnValidationException)
+            // --== Exception de login
+            if (context.Exception is InvalidLoginException)
+            {
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(context.Exception.Message));
+            }
+
+            // --== Exception de Cadastro
+            else if (context.Exception is ErrorOnValidationException)
             {
                 var exception = context.Exception as ErrorOnValidationException;
 
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception.ErrorMensages));
+                context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception!.ErrorMensages));
             }
         }
 
-        private void ThrowUnknowtException(ExceptionContext context)
+        private static void ThrowUnknowtException(ExceptionContext context)
         {
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 context.Result = new ObjectResult(new ResponseErrorJson(ResourceMessagesException.UNKNOW_ERROR));
-           
         }
     }
 }

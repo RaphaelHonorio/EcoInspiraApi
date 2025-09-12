@@ -4,6 +4,7 @@ using EcoInspira.Communication.Requests;
 using EcoInspira.Communication.Responses;
 using EcoInspira.Domain.Repositories;
 using EcoInspira.Domain.Repositories.User;
+using EcoInspira.Exceptions;
 using EcoInspira.Exceptions.ExceptionsBase;
 
 namespace EcoInspira.Application.UseCases.User.Register
@@ -34,7 +35,7 @@ namespace EcoInspira.Application.UseCases.User.Register
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
             //--== Validar Request
-            Validade(request);
+           await Validade(request);
 
             //--== mapear a request em um entidade
             var user = _mapper.Map<Domain.Entities.User>(request);
@@ -52,11 +53,17 @@ namespace EcoInspira.Application.UseCases.User.Register
             };
         }
 
-        private void Validade(RequestRegisterUserJson request)
+        private async Task Validade(RequestRegisterUserJson request)
         {
             var validator = new RegisterUserValidador();
 
             var result = validator.Validate(request);
+
+            var emailExist = await _readOnlyRepository.ExistActiveUserWithEmail(request.Email);
+            if (emailExist)
+            {
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.EMAIL_ALREADY_REGISTERED));
+            }
 
             if ( result.IsValid == false)
             {

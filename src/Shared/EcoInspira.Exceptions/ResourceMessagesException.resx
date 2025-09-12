@@ -120,8 +120,14 @@
   <data name="CPF_EMPTY" xml:space="preserve">
     <value>O CPF não pode estar vazio</value>
   </data>
+  <data name="CPF_OR_PASSWORD_INVALID" xml:space="preserve">
+    <value>CPF e/ou senha invalidos</value>
+  </data>
   <data name="DATANASCIMENO_EMPTY" xml:space="preserve">
     <value>A Data de nascimento não pode estar vazia</value>
+  </data>
+  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+    <value>O email já possui uma conta cadastrada</value>
   </data>
   <data name="EMAIL_INVALID" xml:space="preserve">
     <value>O email é invalido</value>

@@ -70,11 +70,29 @@ namespace EcoInspira.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a CPF e/ou senha invalidos.
+        /// </summary>
+        public static string CPF_OR_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("CPF_OR_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A Data de nascimento não pode estar vazia.
         /// </summary>
         public static string DATANASCIMENO_EMPTY {
             get {
                 return ResourceManager.GetString("DATANASCIMENO_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O email já possui uma conta cadastrada.
+        /// </summary>
+        public static string EMAIL_ALREADY_REGISTERED {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
             }
         }
         
