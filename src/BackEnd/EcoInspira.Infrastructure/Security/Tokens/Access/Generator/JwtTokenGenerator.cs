@@ -32,7 +32,8 @@ namespace EcoInspira.Infrastructure.Security.Tokens.Access.Generator
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var securityToken =  tokenHandler.CreateToken(tokenDescriptor);
+
+            var securityToken = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(securityToken);
         }

@@ -50,7 +50,7 @@ namespace EcoInspira.Application.UseCases.User.Register
 
             return new ResponseRegisteredUserJson
             {
-                Name = request.Name,
+                Name = user.Name,
                 Tokens = new ResponseTokensJson
                 {
                     AccessToken = _accessTokenGenerator.Generate(user.UserIdentifier),

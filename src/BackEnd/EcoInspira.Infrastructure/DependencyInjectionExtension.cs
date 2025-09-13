@@ -63,6 +63,5 @@ namespace EcoInspira.Infrastructure
 
             services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
         }
-
     }
 }

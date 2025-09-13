@@ -14,9 +14,9 @@ namespace EcoInspira.Application.UseCases.Login.DoLogin
         private readonly IAccessTokenGenerator _accessTokenGenerator;
 
         public DoLoginUseCase(
-            IUserReadOnlyRepository repository, 
-            PasswordEncripter passwordEncripter, 
-            IAccessTokenGenerator accessTokenGenerator
+            IUserReadOnlyRepository repository,
+            IAccessTokenGenerator accessTokenGenerator,
+            PasswordEncripter passwordEncripter
             )
         {
             _repository = repository;
