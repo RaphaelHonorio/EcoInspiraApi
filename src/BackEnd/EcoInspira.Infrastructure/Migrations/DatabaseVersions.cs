@@ -3,6 +3,6 @@
     public abstract class DatabaseVersions
     {
         public const int TABLE_USER = 1;
-        public const int TABLE_POSTS = 2;
+        public const int TABLE_POST = 2;
     }
 }

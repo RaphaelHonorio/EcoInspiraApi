@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="COMMENT_EMPTY" xml:space="preserve">
+    <value>O comentario está vazio</value>
+  </data>
   <data name="CPF_EMPTY" xml:space="preserve">
     <value>O CPF não pode estar vazio</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="PASSWORD_INVALID" xml:space="preserve">
     <value>A senha é muito curta</value>
+  </data>
+  <data name="POST_TITLE_EMPTY" xml:space="preserve">
+    <value>O titulo do Post não pode ser vazio</value>
   </data>
   <data name="UNKNOW_ERROR" xml:space="preserve">
     <value>Ocorreu um erro desconhecido</value>

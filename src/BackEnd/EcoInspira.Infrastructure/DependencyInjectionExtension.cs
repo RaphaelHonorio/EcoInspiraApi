@@ -1,4 +1,5 @@
 ﻿using EcoInspira.Domain.Repositories;
+using EcoInspira.Domain.Repositories.Post;
 using EcoInspira.Domain.Repositories.User;
 using EcoInspira.Domain.Security.Cryptography;
 using EcoInspira.Domain.Security.Tokens;
@@ -49,6 +50,7 @@ namespace EcoInspira.Infrastructure
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
             services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
+            services.AddScoped<IPostWriteOnlyRepository, PostRepository>();
         }
 
         private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
