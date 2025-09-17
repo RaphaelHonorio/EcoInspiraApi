@@ -1,9 +1,10 @@
-﻿using EcoInspira.Application.Services.Cryptography;
+﻿using EcoInspira.Domain.Security.Cryptography;
+using EcoInspira.Infrastructure.Security.Criptography;
 
 namespace CommonTestUtilities.Cryptography
 {
     public class PasswordEncripterBuilder
     {
-        public static PasswordEncripter Build() => new PasswordEncripter("abbs");
+        public static IPasswordEncripter Build() => new Sha512Encripter("abbs");
     }
 }

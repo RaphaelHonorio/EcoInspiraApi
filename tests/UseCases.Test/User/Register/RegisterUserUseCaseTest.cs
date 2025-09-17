@@ -39,9 +39,6 @@ namespace UseCases.Test.User.Register
                 .Where(e => e.ErrorMensages.Count == 1 && e.ErrorMensages.Contains(ResourceMessagesException.EMAIL_INVALID));
         }
 
-
-
-
         private RegisterUserUseCase CreateUseCase(string? email = null)
         {
             var mapper = MapperBuilder.Build();
@@ -53,7 +50,7 @@ namespace UseCases.Test.User.Register
             if(string.IsNullOrEmpty(email)== false)
                 readRepositoryBuilder.ExistActiveUserWithEmail(email);
 
-            return new RegisterUserUseCase(writeRepository, readRepositoryBuilder.Build(), unityOfWork, passwordEncripter, mapper);
+            return new RegisterUserUseCase(writeRepository, readRepositoryBuilder.Build(), unityOfWork, passwordEncripter, null ,mapper);
 
         }
     }

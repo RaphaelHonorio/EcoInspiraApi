@@ -1,7 +1,7 @@
-﻿using EcoInspira.Application.Services.Cryptography;
-using EcoInspira.Communication.Requests;
+﻿using EcoInspira.Communication.Requests;
 using EcoInspira.Communication.Responses;
 using EcoInspira.Domain.Repositories.User;
+using EcoInspira.Domain.Security.Cryptography;
 using EcoInspira.Domain.Security.Tokens;
 using EcoInspira.Exceptions.ExceptionsBase;
 
@@ -10,13 +10,13 @@ namespace EcoInspira.Application.UseCases.Login.DoLogin
     public class DoLoginUseCase : IDoLoginUseCase
     {
         private readonly IUserReadOnlyRepository _repository;
-        private readonly PasswordEncripter _passwordEncripter;
+        private readonly IPasswordEncripter _passwordEncripter;
         private readonly IAccessTokenGenerator _accessTokenGenerator;
 
         public DoLoginUseCase(
             IUserReadOnlyRepository repository,
             IAccessTokenGenerator accessTokenGenerator,
-            PasswordEncripter passwordEncripter
+            IPasswordEncripter passwordEncripter
             )
         {
             _repository = repository;
@@ -26,7 +26,7 @@ namespace EcoInspira.Application.UseCases.Login.DoLogin
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestLoginJson request)
         {
-            var encriptedPassword = _passwordEncripter.Encrypyt(request.Password);
+            var encriptedPassword = _passwordEncripter.Encrypt(request.Password);
 
             var user = await _repository.GetByCpfAndPassword(request.Cpf, encriptedPassword) ?? throw new InvalidLoginException();
 

@@ -3,7 +3,7 @@
 namespace EcoInspira.Infrastructure.Migrations.Versions
 {
 
-    [Migration(1,"Create table to save the user's information")]
+    [Migration(DatabaseVersions.TABLE_USER,"Create table to save the user's information")]
     public class Version0001 : VersionBase
     {
         public override void Up()

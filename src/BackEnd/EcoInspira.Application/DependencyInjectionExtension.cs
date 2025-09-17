@@ -1,7 +1,9 @@
 ﻿using EcoInspira.Application.Services.AutoMapper;
-using EcoInspira.Application.Services.Cryptography;
 using EcoInspira.Application.UseCases.Login.DoLogin;
+using EcoInspira.Application.UseCases.User.ChangePassword;
+using EcoInspira.Application.UseCases.User.Profile;
 using EcoInspira.Application.UseCases.User.Register;
+using EcoInspira.Application.UseCases.User.Update;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +13,6 @@ namespace EcoInspira.Application
     {
         public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            AddPasswordEncrypter(services, configuration);
             AddAutoMapper(services);
             AddUserCases(services);
         }
@@ -27,12 +28,9 @@ namespace EcoInspira.Application
         {
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
             services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
-        }
-        private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)
-        {
-           var additionalKey = configuration.GetValue<String>("Settings:Password:AdditionalKey");
-
-            services.AddScoped(option => new PasswordEncripter(additionalKey!));
+            services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+            services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
+            services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
         }
     }
 }
