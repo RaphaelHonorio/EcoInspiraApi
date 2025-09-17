@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using EcoInspira.Domain.Security.Cryptography;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace EcoInspira.Application.Services.Cryptography
+namespace EcoInspira.Infrastructure.Security.Criptography
 {
-    public class PasswordEncripter
+    public class Sha512Encripter : IPasswordEncripter
     {
 
         private readonly string _addtionalKey;
 
-        public PasswordEncripter(string addtionalKey) => _addtionalKey = addtionalKey;
+        public Sha512Encripter(string addtionalKey) => _addtionalKey = addtionalKey;
 
 
-        public string Encrypyt(string password)
+        public string Encrypt(string password)
         {
 
             var newPassword = $"{password}{_addtionalKey}";

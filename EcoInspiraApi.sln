@@ -11,17 +11,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{CCA7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DE8E9C89-0C5B-443D-8BBC-92832E3BA6D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.API", "src\BackEnd\EcoInspira.API\EcoInspira.API.csproj", "{2F90B99D-D737-4D4C-8434-E1A1FC7C2820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoInspira.API", "src\BackEnd\EcoInspira.API\EcoInspira.API.csproj", "{2F90B99D-D737-4D4C-8434-E1A1FC7C2820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Application", "src\BackEnd\EcoInspira.Application\EcoInspira.Application.csproj", "{F4C5F98D-8829-494D-89EA-3465A90B87CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoInspira.Application", "src\BackEnd\EcoInspira.Application\EcoInspira.Application.csproj", "{F4C5F98D-8829-494D-89EA-3465A90B87CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Infrastructure", "src\BackEnd\EcoInspira.Infrastructure\EcoInspira.Infrastructure.csproj", "{6B45D27C-DE04-49DB-B9DE-60F63923F671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoInspira.Infrastructure", "src\BackEnd\EcoInspira.Infrastructure\EcoInspira.Infrastructure.csproj", "{6B45D27C-DE04-49DB-B9DE-60F63923F671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Domain", "src\BackEnd\EcoInspira.Domain\EcoInspira.Domain.csproj", "{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoInspira.Domain", "src\BackEnd\EcoInspira.Domain\EcoInspira.Domain.csproj", "{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Communication", "src\Shared\EcoInspira.Communication\EcoInspira.Communication.csproj", "{2677CC29-3690-4602-9319-3B2CD269FA50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoInspira.Communication", "src\Shared\EcoInspira.Communication\EcoInspira.Communication.csproj", "{2677CC29-3690-4602-9319-3B2CD269FA50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoInspira.Exceptions", "src\Shared\EcoInspira.Exceptions\EcoInspira.Exceptions.csproj", "{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoInspira.Exceptions", "src\Shared\EcoInspira.Exceptions\EcoInspira.Exceptions.csproj", "{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTestUtilities", "tests\CommonTestUtilities\CommonTestUtilities.csproj", "{475EDC2B-4746-4975-8429-72BF33A2693F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases.Test", "tests\UseCases.Test\UseCases.Test.csproj", "{AAAE5318-4AFD-4EEB-9D64-B5813A9D5F90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Test", "tests\Validators.Test\Validators.Test.csproj", "{578C407F-DEDC-4344-BB6C-A24C5B997461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Test", "tests\WebApi.Test\WebApi.Test.csproj", "{ECC6F271-6235-4ED6-A671-D116FCD9403F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +61,22 @@ Global
 		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475EDC2B-4746-4975-8429-72BF33A2693F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475EDC2B-4746-4975-8429-72BF33A2693F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475EDC2B-4746-4975-8429-72BF33A2693F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475EDC2B-4746-4975-8429-72BF33A2693F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAAE5318-4AFD-4EEB-9D64-B5813A9D5F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAE5318-4AFD-4EEB-9D64-B5813A9D5F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAE5318-4AFD-4EEB-9D64-B5813A9D5F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAE5318-4AFD-4EEB-9D64-B5813A9D5F90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578C407F-DEDC-4344-BB6C-A24C5B997461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578C407F-DEDC-4344-BB6C-A24C5B997461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578C407F-DEDC-4344-BB6C-A24C5B997461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578C407F-DEDC-4344-BB6C-A24C5B997461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC6F271-6235-4ED6-A671-D116FCD9403F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC6F271-6235-4ED6-A671-D116FCD9403F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC6F271-6235-4ED6-A671-D116FCD9403F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC6F271-6235-4ED6-A671-D116FCD9403F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +90,10 @@ Global
 		{65BDA803-5B07-4BF8-BA5E-E6C2259DA78C} = {CCA76CC8-DD64-4103-B681-F6C080F686CA}
 		{2677CC29-3690-4602-9319-3B2CD269FA50} = {DE8E9C89-0C5B-443D-8BBC-92832E3BA6D6}
 		{6A0DB039-8936-4C3B-B126-A17F3C8D5C5B} = {DE8E9C89-0C5B-443D-8BBC-92832E3BA6D6}
+		{475EDC2B-4746-4975-8429-72BF33A2693F} = {69AB6EDC-5A54-4865-9699-8AC45B7D6203}
+		{AAAE5318-4AFD-4EEB-9D64-B5813A9D5F90} = {69AB6EDC-5A54-4865-9699-8AC45B7D6203}
+		{578C407F-DEDC-4344-BB6C-A24C5B997461} = {69AB6EDC-5A54-4865-9699-8AC45B7D6203}
+		{ECC6F271-6235-4ED6-A671-D116FCD9403F} = {69AB6EDC-5A54-4865-9699-8AC45B7D6203}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0838AE9-2E8C-4297-82DA-C93F0BA65479}

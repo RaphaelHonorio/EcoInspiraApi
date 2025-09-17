@@ -1,8 +1,15 @@
 ﻿using EcoInspira.Domain.Repositories;
 using EcoInspira.Domain.Repositories.User;
+using EcoInspira.Domain.Security.Cryptography;
+using EcoInspira.Domain.Security.Tokens;
+using EcoInspira.Domain.Services.LoggedUser;
 using EcoInspira.Infrastructure.DataAccess;
 using EcoInspira.Infrastructure.DataAccess.Repositories;
 using EcoInspira.Infrastructure.Extensions;
+using EcoInspira.Infrastructure.Security.Criptography;
+using EcoInspira.Infrastructure.Security.Tokens.Access.Generator;
+using EcoInspira.Infrastructure.Security.Tokens.Access.Validator;
+using EcoInspira.Infrastructure.Services.LoggedUser;
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,11 +22,13 @@ namespace EcoInspira.Infrastructure
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration ) 
         {
+            AddPasswordEncrypter(services, configuration);
             AddDbContext_MySqlServer(services, configuration);
             AddFluentMigrator_MySql(services, configuration);
             AddRepositories(services);
+            AddLoggedUser(services);
+            AddTokens(services, configuration);
         }
-
 
         private static void AddDbContext_MySqlServer(IServiceCollection services, IConfiguration configuration)
         {
@@ -39,6 +48,7 @@ namespace EcoInspira.Infrastructure
 
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
+            services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
         }
 
         private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
@@ -52,6 +62,24 @@ namespace EcoInspira.Infrastructure
                 .WithGlobalConnectionString(connectionString)
                 .ScanIn(Assembly.Load("EcoInspira.Infrastructure")).For.All();
             });
+        }
+
+        private static void AddTokens(IServiceCollection services, IConfiguration configuration)
+        {
+            var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpirationTimeMinutes");
+            var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+
+            services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
+            services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
+        }
+
+        private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
+
+        private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)
+        {
+            var additionalKey = configuration.GetValue<String>("Settings:Password:AdditionalKey");
+
+            services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(additionalKey!));
         }
     }
 }

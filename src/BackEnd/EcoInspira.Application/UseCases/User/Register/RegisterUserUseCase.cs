@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using EcoInspira.Application.Services.Cryptography;
 using EcoInspira.Communication.Requests;
 using EcoInspira.Communication.Responses;
 using EcoInspira.Domain.Repositories;
 using EcoInspira.Domain.Repositories.User;
+using EcoInspira.Domain.Security.Cryptography;
+using EcoInspira.Domain.Security.Tokens;
 using EcoInspira.Exceptions;
 using EcoInspira.Exceptions.ExceptionsBase;
 
@@ -15,41 +16,45 @@ namespace EcoInspira.Application.UseCases.User.Register
         private readonly IUserReadOnlyRepository _readOnlyRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly PasswordEncripter _passowordEncripter;
+        private readonly IAccessTokenGenerator _accessTokenGenerator;
+        private readonly IPasswordEncripter _passowordEncripter;
 
         public RegisterUserUseCase(
             IUserWriteOnlyRepository writeOnlyRepository, 
             IUserReadOnlyRepository ReadOnlyRepository,
             IUnitOfWork unitOfWork,
-            PasswordEncripter passowordEncripter,
+            IPasswordEncripter passowordEncripter,
+            IAccessTokenGenerator accessTokenGenerator,
             IMapper mapper
             )
         {
             _writeOnlyRepository = writeOnlyRepository;
             _readOnlyRepository = ReadOnlyRepository;
             _mapper = mapper;
+            _accessTokenGenerator = accessTokenGenerator;
             _passowordEncripter = passowordEncripter;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
-            //--== Validar Request
            await Validade(request);
 
-            //--== mapear a request em um entidade
             var user = _mapper.Map<Domain.Entities.User>(request);
-            user.Password = _passowordEncripter.Encrypyt(request.Password);
+            user.Password = _passowordEncripter.Encrypt(request.Password);
+            user.UserIdentifier = Guid.NewGuid();
 
             await _writeOnlyRepository.Add(user);
 
-
             await _unitOfWork.Commit();
 
-            // salvar no banco de dados
             return new ResponseRegisteredUserJson
             {
-                Name = request.Name,
+                Name = user.Name,
+                Tokens = new ResponseTokensJson
+                {
+                    AccessToken = _accessTokenGenerator.Generate(user.UserIdentifier),
+                }
             };
         }
 
