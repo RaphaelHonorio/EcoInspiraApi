@@ -10,7 +10,7 @@ namespace EcoInspira.API.Controllers
     public class PostController : EcoInspiraBaseController
     {
             [HttpPost]
-            [ProducesResponseType(typeof(ResponseRegisteredPostJson), StatusCodes.Status201Created)]
+            [ProducesResponseType(typeof(ResponsePostJson), StatusCodes.Status201Created)]
             [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
             public async Task<IActionResult> Register(
                 [FromServices] IRegisterPostUserCase useCase, 

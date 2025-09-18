@@ -27,7 +27,7 @@ namespace EcoInspira.Application.UseCases.Post.Register
             _mapper = mapper;
         }
 
-        public async Task<ResponseRegisteredPostJson> Execute(RequestPostJson request)
+        public async Task<ResponsePostJson> Execute(RequestPostJson request)
         {
             Validate(request);
 
@@ -44,7 +44,7 @@ namespace EcoInspira.Application.UseCases.Post.Register
 
             await _unitOfWork.Commit();
 
-            return _mapper.Map<ResponseRegisteredPostJson>(post);
+            return _mapper.Map<ResponsePostJson>(post);
            
         }
 

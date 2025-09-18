@@ -5,6 +5,6 @@ namespace EcoInspira.Application.UseCases.Post.Register
 {
     public interface IRegisterPostUserCase
     {
-        public Task<ResponseRegisteredPostJson> Execute(RequestPostJson request);
+        public Task<ResponsePostJson> Execute(RequestPostJson request);
     }
 }
