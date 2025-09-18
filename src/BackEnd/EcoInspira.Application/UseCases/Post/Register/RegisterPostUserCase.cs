@@ -36,9 +36,9 @@ namespace EcoInspira.Application.UseCases.Post.Register
             var post = _mapper.Map<Domain.Entities.Post>(request);
             post.UserId = loggedUser.Id;
 
-            var comments = request.Comments.ToList();
+           // var comments = request.Comments.ToList();
 
-            post.Comments = _mapper.Map<IList<Domain.Entities.Comment>>(comments);
+  //          post.Comments = _mapper.Map<IList<Domain.Entities.Comment>>(comments);
 
             await _repository.Add(post);
 

@@ -9,6 +9,6 @@ namespace EcoInspira.Infrastructure.DataAccess.Repositories
 
         public PostRepository(EcoInspiraDbContext context) => _context = context;
 
-        public async Task Add(Post post) => await _context.Posts.AddAsync(post);
+         public async Task Add(Post post) => await _context.Post.AddAsync(post);
     }
 }
