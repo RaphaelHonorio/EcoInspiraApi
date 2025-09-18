@@ -61,6 +61,15 @@ namespace EcoInspira.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O comentario está vazio.
+        /// </summary>
+        public static string COMMENT_EMPTY {
+            get {
+                return ResourceManager.GetString("COMMENT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O CPF não pode estar vazio.
         /// </summary>
         public static string CPF_EMPTY {
@@ -129,6 +138,15 @@ namespace EcoInspira.Exceptions {
         public static string PASSWORD_INVALID {
             get {
                 return ResourceManager.GetString("PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O titulo do Post não pode ser vazio.
+        /// </summary>
+        public static string POST_TITLE_EMPTY {
+            get {
+                return ResourceManager.GetString("POST_TITLE_EMPTY", resourceCulture);
             }
         }
         
