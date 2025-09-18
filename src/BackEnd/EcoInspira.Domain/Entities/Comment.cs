@@ -1,6 +1,9 @@
-﻿namespace EcoInspira.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EcoInspira.Domain.Entities
 {
-    public class Comment
+    [Table ("Comment")]
+    public class Comment : EntityBase
     {
         public string Content { get; set; } = string.Empty;
         public long PostId { get; set; }

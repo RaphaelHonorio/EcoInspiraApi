@@ -10,7 +10,6 @@ namespace EcoInspira.Domain.Entities
         public long LikesCount { get; set; } =0;
         public long CommentsCount { get; set; } =0;
         public long UserId { get; set; }
-
     //    public IList<Comment> Comments { get; set; } = [];
     }
 }
