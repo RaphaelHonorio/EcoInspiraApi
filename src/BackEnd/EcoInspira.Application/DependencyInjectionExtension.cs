@@ -1,5 +1,6 @@
 ﻿using EcoInspira.Application.Services.AutoMapper;
 using EcoInspira.Application.UseCases.Login.DoLogin;
+using EcoInspira.Application.UseCases.Post.Filter;
 using EcoInspira.Application.UseCases.Post.Register;
 using EcoInspira.Application.UseCases.User.ChangePassword;
 using EcoInspira.Application.UseCases.User.Profile;
@@ -42,6 +43,7 @@ namespace EcoInspira.Application
             services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
             services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
             services.AddScoped<IRegisterPostUserCase, RegisterPostUserCase>();
+            services.AddScoped<IFilterPostUseCase, FilterPostUseCase>();
         }
     }
 }

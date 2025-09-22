@@ -21,8 +21,8 @@ namespace EcoInspira.Application.Services.AutoMapper
             CreateMap<RequestRegisterUserJson, Domain.Entities.User>()
                 .ForMember(dest => dest.Password, opt => opt.Ignore());
 
-            CreateMap<RequestPostJson, Domain.Entities.Post>()
-                .ForMember(dest => dest.Comments, opt => opt.Ignore());
+            CreateMap<RequestPostJson, Domain.Entities.Post>();
+          //      .ForMember(dest => dest.Comments, opt => opt.Ignore());
 
             CreateMap<RequestCommentJson, Domain.Entities.Comment>();
             
@@ -34,6 +34,11 @@ namespace EcoInspira.Application.Services.AutoMapper
             CreateMap<Domain.Entities.User, ResponseUserProfileJson>();
             CreateMap<Domain.Entities.Post, ResponsePostJson>()
                 .ForMember(dest => dest.Id, config => config.MapFrom(source => _idEnconder.Encode(source.Id)));
+
+            CreateMap<Domain.Entities.Post, ResponsePostJson>()
+                .ForMember(dest => dest.Id, config => config.MapFrom(source => _idEnconder.Encode(source.Id)));
+                
+         
         }
     }
 }

@@ -12,10 +12,10 @@ namespace EcoInspira.Application.UseCases.Post
             RuleFor(post => post.Description).NotEmpty().WithMessage(ResourceMessagesException.POST_TITLE_EMPTY);
             RuleFor(post => post.LikesCount).NotEmpty().WithMessage(ResourceMessagesException.POST_TITLE_EMPTY);
             RuleFor(post => post.CommentsCount).NotEmpty().WithMessage(ResourceMessagesException.POST_TITLE_EMPTY);
-              RuleForEach(post => post.Comments).ChildRules(commentRules =>
-                {
-                    commentRules.RuleFor(comment => comment.Content).NotEmpty().WithMessage(ResourceMessagesException.COMMENT_EMPTY);
-                });
+         //     RuleForEach(post => post.Comments).ChildRules(commentRules =>
+        //        {
+         //           commentRules.RuleFor(comment => comment.Content).NotEmpty().WithMessage(ResourceMessagesException.COMMENT_EMPTY);
+         //       });
         }
     }
 }

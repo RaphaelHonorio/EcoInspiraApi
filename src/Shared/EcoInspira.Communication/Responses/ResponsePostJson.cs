@@ -1,6 +1,4 @@
-﻿using EcoInspira.Communication.Requests;
-
-namespace EcoInspira.Communication.Responses
+﻿namespace EcoInspira.Communication.Responses
 {
     public class ResponsePostJson
     {
@@ -8,4 +6,10 @@ namespace EcoInspira.Communication.Responses
         public string Id { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
     }
+
+    public class ResponseListPostsJson
+    {
+        public IList<ResponsePostJson> Post { get; set; } = [];
+    }
 }
+
