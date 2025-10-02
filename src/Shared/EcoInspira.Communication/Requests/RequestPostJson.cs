@@ -6,6 +6,5 @@
         public string Description { get; set; } = string.Empty ;
         public long LikesCount { get; set; } = 0;
         public long CommentsCount { get; set; } = 0;
-     //   public IList<RequestCommentJson> Comments { get; set; } = [];
     }
 }
